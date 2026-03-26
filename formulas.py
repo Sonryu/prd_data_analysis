@@ -13,4 +13,9 @@ def calcular_empuxo_maximo(empuxo): #valor maximo do empuxo
 def empuxo_medio(empuxo, T): #calculo do valor medio do empuxo
     return np.sum(empuxo) / T
 
-def calcular_t_p(empuxo, )
+def calcular_t_p(empuxo, tempo_s): #instante de tempo onde o empuxo é maximo
+    indice = np.argmax(empuxo)
+    return tempo_s[indice]
+
+def calcular_impulso_total(empuxo, tempo_s): #calcular impulso total pela regra trapezoidal resolvendo a integral: I = f(t) dt
+    return np.trapz(empuxo, tempo_s)
