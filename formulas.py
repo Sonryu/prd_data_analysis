@@ -19,3 +19,4 @@ def calcular_t_p(empuxo, tempo_s): #instante de tempo onde o empuxo é maximo
 
 def calcular_impulso_total(empuxo, tempo_s): #calcular impulso total pela regra trapezoidal resolvendo a integral: I = f(t) dt
     return np.trapz(empuxo, tempo_s)
+
