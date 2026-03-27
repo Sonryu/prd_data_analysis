@@ -1,6 +1,6 @@
 import numpy as np
 
-def aplicar_transformacao(x, y_raw):
+def tara(x, y_raw):
     """
     Aplica a transformação linear nos dados de entrada.
     Equação: y = -4.51 * 10^-3 * y_raw + 37900
