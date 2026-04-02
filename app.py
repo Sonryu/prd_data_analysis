@@ -40,6 +40,14 @@ st.image('elet.jpg')
 st.header('Sistema de análise de dados de teste estático')
 st.subheader('Potiguar Rocket Design', divider=True)
 
+with st.sidebar: #API_KEY do usuário para analise de dados por Gemini. [-- INICIO --]
+
+    custom_key = st.text_input("Insira sua Gemini API Key", type="password")
+    if custom_key:
+        genai.configure(api_key=custom_key)
+#API_KEY do usuário para analise de dados por Gemini. [-- FIM --] 
+
+
 with st.sidebar:
     st.image('analise_de_dados.jpg')
 
