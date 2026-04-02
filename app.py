@@ -12,14 +12,25 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-# --- configs
+# --- configs --- INICIO: 
+
 load_dotenv() # Carrega variáveis de ambiente do .env (apenas para rodar local)
 
 # Configuração de Segurança: Busca a chave no ambiente ou nos Secrets do Streamlit
 # ele apenas pedirá a chave ou usará a que estiver configurada no servidor do usuario
 api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 
-# cabeçalho
+
+if api_key:
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel('gemini-1.5-flash')
+    st.success("Gemini API configurada com sucesso!")
+else:
+    st.error("API Key não encontrada. Configure o segredo 'GOOGLE_API_KEY'.")
+# --- configs --- FIM
+
+
+# --- cabeçalho ---INICIO
 # ---------
 
 # > mudar imagem elet.png
@@ -40,3 +51,4 @@ uploaded_files = st.file_uploader(
         accept_multiple_files=True, type=['csv', 'txt', 'wsv'])
 if not uploaded_files:
     continue
+
