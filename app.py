@@ -8,6 +8,7 @@ import tara as tr
 import streamlit as st
 import numpy as np
 import formulas as fm 
+import gemini
 
 # cabeçalho
 # ---------
