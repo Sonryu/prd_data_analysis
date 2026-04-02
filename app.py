@@ -8,7 +8,16 @@ import tara as tr
 import streamlit as st
 import numpy as np
 import formulas as fm 
-import gemini
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+
+# --- configs
+load_dotenv() # Carrega variáveis de ambiente do .env (apenas para rodar local)
+
+# Configuração de Segurança: Busca a chave no ambiente ou nos Secrets do Streamlit
+# ele apenas pedirá a chave ou usará a que estiver configurada no servidor do usuario
+api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 
 # cabeçalho
 # ---------
