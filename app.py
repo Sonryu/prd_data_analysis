@@ -12,14 +12,22 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
-# --- configs --- INICIO: 
+    #       --- configuração da pagina --- [-- INICIO --]
+
+st.set_page_config(page_title='PRD: Análise de dados de teste estático', layout='centered', page_icon='Logo - PRD.png')
+
+    #       --- configuração da pagina --- [-- FIM --]
+
+
+    #       --- configs --- [-- INICIO --] 
 
 load_dotenv() # Carrega variáveis de ambiente do .env (apenas para rodar local)
 
-# Configuração de Segurança: Busca a chave no ambiente ou nos Secrets do Streamlit
-# ele apenas pedirá a chave ou usará a que estiver configurada no servidor do usuario
+# Prioridade de chave: 1. Sidebar (se digitada) | 2. Env/Secrets
 api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 
+# Configuração de Segurança: Busca a chave no ambiente ou nos Secrets do Streamlit
+# ele apenas pedirá a chave ou usará a que estiver configurada no servidor do usuario
 
 if api_key:
     genai.configure(api_key=api_key)
@@ -27,25 +35,24 @@ if api_key:
     st.success("Gemini API configurada com sucesso!")
 else:
     st.error("API Key não encontrada. Configure o segredo 'GOOGLE_API_KEY'.")
-# --- configs --- FIM
+        #       --- configs --- FIM
 
 
-# --- cabeçalho ---INICIO
-# ---------
+        #       --- cabeçalho ---INICIO
 
 # > mudar imagem elet.png
 st.logo('Logo - PRD.png')
-st.set_page_config(page_title='PRD: Análise de dados de teste estático', layout='centered', page_icon='Logo - PRD.png')
 st.image('elet.jpg')
 st.header('Sistema de análise de dados de teste estático')
 st.subheader('Potiguar Rocket Design', divider=True)
 
-with st.sidebar: #API_KEY do usuário para analise de dados por Gemini. [-- INICIO --]
 
+    #API_KEY do usuário para analise de dados por Gemini. [-- INICIO --]
+with st.sidebar:
     custom_key = st.text_input("Insira sua Gemini API Key", type="password")
     if custom_key:
         genai.configure(api_key=custom_key)
-#API_KEY do usuário para analise de dados por Gemini. [-- FIM --] 
+    #API_KEY do usuário para analise de dados por Gemini. [-- FIM --] 
 
 
 with st.sidebar:
