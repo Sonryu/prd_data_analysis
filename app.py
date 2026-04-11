@@ -38,7 +38,7 @@ api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 
 # Lógica da Sidebar para chave customizada
 with st.sidebar:
-    st.image('analise_de_dados.jpg')
+    st.image('image/analise_de_dados.jpg')
     st.markdown("---")
     custom_key = st.text_input("Insira sua Gemini API Key", type="password")
     if custom_key:
@@ -57,8 +57,8 @@ else:
 # ==========================================
 
 # > mudar imagem elet.png
-st.logo('Logo - PRD.png')
-st.image('elet.jpg')
+st.logo('image/Logo - PRD.png')
+st.image('image/elet.jpg')
 st.header('Sistema de análise de dados de teste estático')
 st.subheader('Potiguar Rocket Design', divider=True)
 
