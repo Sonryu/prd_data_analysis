@@ -27,7 +27,7 @@ Based on the current implementation in `formulas.py`, the app performs the follo
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Sonryu/prd_data_analysis.git
    cd prd_data_analisys
    ```
 
