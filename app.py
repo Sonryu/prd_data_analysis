@@ -126,4 +126,4 @@ for i, file in enumerate(uploaded_files):
     with col2:
         # Espaço reservado para a Tabela de Números (Passo 5)
         st.write("### Resumo de Métricas")
-        # Aqui entrarão os cálculos de fm.calcular_empuxo_maximo, etc.
+        # Aqui entrarão os cálculos de fm.calcular_empuxo_maximo, etc
