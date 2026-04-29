@@ -87,42 +87,34 @@ analises_processadas = []
 
 # Loop para processar cada arquivo individualmente
 for i, file in enumerate(uploaded_files):
-    # 1. Leitura dos dados brutos (Exemplo assumindo colunas de tempo e valor bruto)
-    # Aqui você usará sua lógica de leitura (ex: np.loadtxt ou genfromtxt)
-    raw_data = np.genfromtxt(file, delimiter=None) # Ajustar delimitador se necessário
+
+#  Leitura dos dados brutos
     
-    # 2. Aplicação da TARA e Conversão de Tempo
-    # tempo_s = fm.converter_segundos(raw_data[:, 0])
-    # _, empuxo_n = tr.tara(raw_data[:, 0], raw_data[:, 1])
+    data_bruta = np.genfromtxt(file, delimiter=None)
     
+    # CALIBRAÇÃO: Aplicando a TARA e convertendo o tempo
+    # data_bruta[:, 0] é a primeira coluna (tempo em ms)
+    # data_bruta[:, 1] é a segunda coluna (leitura bruta do sensor)
+    tempo_s_raw = fm.converter_segundos(data_bruta[:, 0])
+    tempo_s, empuxo_n = tr.tara(tempo_s_raw, data_bruta[:, 1])
+
     st.header(f'Dados do teste: {file.name}', divider=True)
     name = st.text_input(f'Nome do teste ({i}):', value=file.name, key=f"name_{i}")
 
     col1, col2 = st.columns([60, 40])
     
     with col1:
-        # Gráfico Principal usando os dados transformados
+        # 3. Gráfico com os dados CALIBRADOS
         fig = px.line(
-            x=raw_data[:, 0], # Substituir por tempo_s após ajuste
-            y=raw_data[:, 1], # Substituir por empuxo_n após ajuste
+            x=tempo_s,    # Agora em Segundos e calibrado
+            y=empuxo_n,   # Agora em Newtons (N)
             markers=True, 
-            title=f'Curva de empuxo: {name}', 
+            title=f'Curva de empuxo (Calibrada): {name}', 
             template='plotly_dark'
         )
         
         fig.update_layout(xaxis_title='Tempo [s]', yaxis_title='Empuxo [N]')
-        
-        st.plotly_chart(fig, config={
-            'modeBarButtonsToRemove': ['lasso2d', 'select', 'pan', 'zoomIn', 'zoomOut', 'autoScale'],
-            'toImageButtonOptions': {
-                'format': 'png',
-                'filename': f'curva_empuxo_{name}',
-                'width': 600,
-                'height': 500,
-                'scale': 2 # Melhora a resolução do PNG
-            }
-        }, theme=None)
-
+        st.plotly_chart(fig, use_container_width=True)
     with col2:
         # Espaço reservado para a Tabela de Números (Passo 5)
         st.write("### Resumo de Métricas")
