@@ -12,7 +12,7 @@ import formulas as fm
 from google import genai 
 import os
 from dotenv import load_dotenv
-
+from PIL import Image
 
 
 
@@ -39,7 +39,7 @@ api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
 
 # Lógica da Sidebar para chave customizada
 with st.sidebar:
-    st.image('image/analise_de_dados.jpg')
+    st.image('image/foguete_rasgando_ceu.png')
     st.markdown("---")
     custom_key = st.text_input("Insira sua Gemini API Key", type="password")
     if custom_key:
@@ -56,10 +56,23 @@ else:
 # ==========================================
 # 3. CABEÇALHO E INTERFACE (VISUAL)
 # ==========================================
-
-# > mudar imagem elet.png
 st.logo('image/Logo - PRD.png')
-st.image('image/elet.jpg')
+
+# Abre a imagem original
+img = Image.open('image/foguete_app_analise_de_dados.png')
+
+#  define a área de corte (caixa)
+# a sintaxe é (esquerda, cima, direita, baixo)
+# exemplo: Cortar 100px de cima e 100px de baixo
+largura, altura = img.size
+caixa_de_corte = (0, 150, largura, altura - 170) # ajustar esses números (150) conforme precisar
+
+# Faz o corte
+img_cortada = img.crop(caixa_de_corte)
+
+#Exibe a imagem já cortada
+st.image(img_cortada)
+
 st.header('Sistema de análise de dados de teste estático')
 st.subheader('Potiguar Rocket Design', divider=True)
 
