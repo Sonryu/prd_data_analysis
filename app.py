@@ -102,15 +102,15 @@ analises_processadas = []
 for i, file in enumerate(uploaded_files):
 
 #  Leitura dos dados brutos
-    
+
     data_bruta = np.genfromtxt(file, delimiter=None)
     
-    # CALIBRAÇÃO: Aplicando a TARA e convertendo o tempo
-    # data_bruta[:, 0] é a primeira coluna (tempo em ms)
-    # data_bruta[:, 1] é a segunda coluna (leitura bruta do sensor)
-    tempo_s_raw = fm.converter_segundos(data_bruta[:, 0])
-    tempo_s, empuxo_n = tr.tara(tempo_s_raw, data_bruta[:, 1])
-
+    # CALIBRAÇÃO COMPLETA (Tempo Zero + Escala + Offset)
+    # Passamos a matriz inteira para a nova função no formulas.py
+    data_calibrada = fm.calibrar_curva_cel_grande(data_bruta)
+    tempo_s = fm.converter_segundos(data_calibrada[:, 0])
+    empuxo_n = data_calibrada[:, 1]
+ 
     st.header(f'Dados do teste: {file.name}', divider=True)
     name = st.text_input(f'Nome do teste ({i}):', value=file.name, key=f"name_{i}")
 
