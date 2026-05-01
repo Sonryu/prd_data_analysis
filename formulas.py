@@ -17,7 +17,7 @@ def calcular_t_p(empuxo, tempo_s): #instante de tempo onde o empuxo é maximo
     return tempo_s[indice]
 
 def calcular_impulso_total(empuxo, tempo_s): #calcular impulso total pela regra trapezoidal resolvendo a integral: I = f(t) dt
-    return np.trapz(empuxo, tempo_s)
+    return np.trapezoid(empuxo, tempo_s)
 
 def calibrar_curva_cel_grande(data: np.ndarray):
     data[:, 0] = data[:, 0] - data[0, 0]  # corrige tempo 0
