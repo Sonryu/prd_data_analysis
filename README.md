@@ -51,7 +51,7 @@ The system automatically applies calibration factors and filters noise. You will
 ### 3. Comparative View
 When analyzing multiple motors, a consolidated chart at the bottom allows for direct performance comparison.
 
->  > ![Gráficos e Estatísticas](readme_image/Imagem_3.png)
+ > ![Gráficos e Estatísticas](readme_image/Imagem_3.png)
 
 
 ### Bulding AI analisisys...
