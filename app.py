@@ -140,6 +140,33 @@ for i, file in enumerate(uploaded_files):
                 height=30
             ))
         ])
+
+        # --- ANÁLISE TÉCNICA COM IA (GEMINI) ---
+        if api_key:
+            st.markdown("---")
+            if st.button(f"Gerar Relatório Técnico IA ({name})", key=f"ai_btn_{i}"):
+                with st.spinner("Analisando dados com Gemini..."):
+                    # Prepara o contexto para a IA
+                    prompt = f"""
+                    Você é um engenheiro especialista em propulsão de foguetes. 
+                    Analise os seguintes dados do teste estático do motor '{name}':
+                    - Empuxo Máximo: {fm.calcular_empuxo_maximo(empuxo_n):.2f} N
+                    - Empuxo Médio: {fm.empuxo_medio(empuxo_n, fm.calcular_tempo(tempo_rel_s)):.2f} N
+                    - Impulso Total: {fm.calcular_impulso_total(empuxo_n, tempo_rel_s):.2f} Ns
+                    - Tempo de Queima: {fm.calcular_tempo(tempo_rel_s):.3f} s
+                    - Tempo até o Pico: {fm.calcular_t_p(empuxo_n, tempo_rel_s):.3f} s
+                    
+                    Forneça um comentário técnico curto e objetivo (máximo 4 linhas) sobre a eficiência desse motor.
+                    """
+                    
+                    try:
+                        response = client.models.generate_content(
+                            model="gemini-2.0-flash", 
+                            contents=prompt
+                        )
+                        st.info(f"**Análise da IA:** {response.text}")
+                    except Exception as e:
+                        st.error(f"Erro ao contatar o Gemini: {e}")
         
         fig_table.update_layout(
             margin=dict(l=0, r=0, t=0, b=0),
