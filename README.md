@@ -1,56 +1,96 @@
-# Rocket Motor Static Test Data Analysis
+# Rocket Motor Static Test Data Analysis - PRD 🚀
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![NumPy](https://img.shields.io/badge/NumPy-Data%20Science-013243.svg?style=flat-square&logo=numpy&logoColor=white)](https://numpy.org/)
+[![Gemini](https://img.shields.io/badge/Gemini-AI%20Analysis-orange.svg?style=flat-square&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-An application developed for **@PotiguarRocketDesign** to analyze data from static rocket motor tests. This tool processes telemetry and sensor data to calculate critical performance parameters.
+An advanced application developed for **Potiguar Rocket Design (PRD)** to analyze and visualize data from static rocket motor tests. This tool transforms raw load cell data into actionable engineering insights using modern data science libraries and Artificial Intelligence.
 
-## 🚀 Features
+---
 
+## ✨ Key Features
 
-Based on the current implementation in `formulas.py`, the app performs the following calculations:
+- **Multi-Format Upload:** Supports `.csv`, `.txt`, and `.wsv` raw data files.
+- **Smart Burn Detection:** Automatically identifies the ignition and burnout points using thrust thresholding.
+- **Interactive Visualizations:** High-fidelity thrust-time curves powered by Plotly.
+- **Automated Engineering Metrics:**
+  - **Maximum & Average Thrust (N)**
+  - **Total Impulse (Ns)**
+  - **Burn Time (s)**
+  - **Time to Peak (s)**
+- **AI-Powered Technical Reports:** Integrates with **Google Gemini 2.0 Flash** to provide concise technical analysis of motor efficiency.
+- **Comparative Analysis:** Compare multiple motor tests side-by-side in a single unified chart.
+- **Export Ready:** Generate and download high-quality PNG tables of test statistics.
 
-- **Time Conversion:** Automatically converts sensor timestamps from milliseconds (ms) to seconds (s).
-- **Burn Time:** Calculates the total motor burn duration.
-- **Maximum Thrust:** Identifies the peak thrust (Empuxo Máximo) recorded during the test.
-- **Average Thrust:** Computes the mean thrust over the burn duration.
-- **Data Integration:** (In Progress) Integration with Streamlit for interactive data visualization.
+---
 
 ## 🛠️ Technologies Used
 
-- **Python:** Core programming language.
-- **Streamlit:** Used for creating the interactive web interface.
-- **NumPy:** Utilized for high-performance numerical calculations and array processing.
+- **Streamlit:** Interactive web interface.
+- **Plotly:** Dynamic and interactive charting.
+- **NumPy & Pandas:** Data processing and numerical analysis.
+- **Google GenAI (Gemini API):** Intelligent technical reporting.
+- **Python-dotenv:** Secure environment variable management.
 
-## 📦 Installation
+---
+
+## 🖥️ Usage Guide
+
+### 1. File Upload
+Upload one or more files containing your test data. The app will process each file individually and offer a comparison if multiple files are uploaded.
+
+> *[INSERT SCREENSHOT: Uploading files and initial interface]*
+
+### 2. Data Calibration & Results
+The system automatically applies calibration factors and filters noise. You will see an interactive graph and a summary table for each motor.
+
+> *[INSERT SCREENSHOT: Individual motor graph and statistics table]*
+
+### 3. AI Technical Analysis
+If a Gemini API Key is provided (via `.env` or sidebar), you can generate a short AI-driven report analyzing the motor's performance.
+
+> *[INSERT SCREENSHOT: AI Analysis button and result]*
+
+### 4. Comparative View
+When analyzing multiple motors, a consolidated chart at the bottom allows for direct performance comparison.
+
+> *[INSERT SCREENSHOT: Comparative charts for multiple motors]*
+
+---
+
+## 📦 Installation & Setup
 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Sonryu/prd_data_analysis.git
-   cd prd_data_analisys
+   cd prd_data_analysis
    ```
 
-2. **Set up a virtual environment (optional but recommended):**
+2. **Set up a virtual environment:**
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies:**
-   *(Note: Ensure you have streamlit and numpy installed)*
    ```bash
-   pip install streamlit numpy
+   pip install -r requirements.txt
    ```
 
-## 🖥️ Usage
+4. **Environment Variables:**
+   Create a `.env` file in the root directory and add your Gemini API Key (optional):
+   ```env
+   GOOGLE_API_KEY=your_key_here
+   ```
 
-To run the application locally, use the following command:
+5. **Run the application:**
+   ```bash
+   streamlit run app.py
+   ```
 
-```bash
-streamlit run app.py
-```
+---
 
 ## 📄 License
 
-This project is part of the development for @PotiguarRocketDesign. Refer to the organization for licensing details.
+Copyright (c) 2026 Ramon Watson de Lima Vilar.
+This project is licensed under the **MIT License**. See the `LICENSE` file for full details.
