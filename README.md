@@ -39,23 +39,22 @@ An advanced application developed for **Potiguar Rocket Design (PRD)** to analyz
 ### 1. File Upload
 Upload one or more files containing your test data. The app will process each file individually and offer a comparison if multiple files are uploaded.
 
-> *[INSERT SCREENSHOT: Uploading files and initial interface]*
+ > ![Gráficos e Estatísticas](readme_image/Imagem_1.png)
+ ...
+ > ![Gráficos e Estatísticas](readme_image/Imagem_1.2.png)
 
 ### 2. Data Calibration & Results
 The system automatically applies calibration factors and filters noise. You will see an interactive graph and a summary table for each motor.
 
-> *[INSERT SCREENSHOT: Individual motor graph and statistics table]*
+ > ![Gráficos e Estatísticas](readme_image/Imagem_2.png)
 
-### 3. AI Technical Analysis
-If a Gemini API Key is provided (via `.env` or sidebar), you can generate a short AI-driven report analyzing the motor's performance.
-
-> *[INSERT SCREENSHOT: AI Analysis button and result]*
-
-### 4. Comparative View
+### 3. Comparative View
 When analyzing multiple motors, a consolidated chart at the bottom allows for direct performance comparison.
 
-> *[INSERT SCREENSHOT: Comparative charts for multiple motors]*
+>  > ![Gráficos e Estatísticas](readme_image/Imagem_3.png)
 
+
+### Bulding AI analisisys...
 ---
 
 ## 📦 Installation & Setup
